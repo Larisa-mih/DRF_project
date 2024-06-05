@@ -3,7 +3,7 @@ from django.urls import path
 from users.apps import UsersConfig
 from users.views import (UserCreateAPIView, UserDestroyAPIView,
                          UserListAPIView, UserRetrieveAPIView,
-                         UserUpdateAPIView)
+                         UserUpdateAPIView, PaymentListAPIView)
 
 app_name = UsersConfig.name
 
@@ -13,4 +13,5 @@ urlpatterns = [
     path('detail/<int:pk>', UserRetrieveAPIView.as_view(), name='user_detail'),
     path('edit/<int:pk>', UserUpdateAPIView.as_view(), name='user_edit'),
     path('delete/<int:pk>', UserDestroyAPIView.as_view(), name='user_delete'),
+    path('payment/', PaymentListAPIView.as_view(), name='payment_list'),
 ]
