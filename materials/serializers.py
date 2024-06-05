@@ -3,15 +3,19 @@ from rest_framework import serializers
 from materials.models import Course, Subject
 
 
-class CourseSerializer(serializers.ModelSerializer):
-    """Сериализатор курса"""
+class SubjectSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Course
+        model = Subject
         fields = '__all__'
 
 
-class SubjectSerializer(serializers.ModelSerializer):
-    """Сериализатор урока"""
+class CourseSerializer(serializers.ModelSerializer):
+    subject_count = serializers.SerializerMethodField()
+    subject = SubjectSerializer(source='subject_set', many=True)
+
+    def get_subject_count(self, obj):
+        return obj.subject_set.count()
+
     class Meta:
-        model = Subject
+        model = Course
         fields = '__all__'
