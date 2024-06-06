@@ -1,7 +1,7 @@
 from rest_framework import generics
 
 from users.models import User, Payment
-from users.serializers import UserSerializer, PaymentSerializer
+from users.serializers import UserSerializer, PaymentSerializer, UserDetailSerializer
 from django_filters import rest_framework as filters
 from rest_framework.filters import OrderingFilter
 
@@ -16,7 +16,7 @@ class UserListAPIView(generics.ListAPIView):
 
 
 class UserRetrieveAPIView(generics.RetrieveAPIView):
-    serializer_class = UserSerializer
+    serializer_class = UserDetailSerializer
     queryset = User.objects.all()
 
 
