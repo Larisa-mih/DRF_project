@@ -1,0 +1,35 @@
+[
+  {
+    "model": "materials.subject",
+    "pk": 1,
+    "fields": {
+      "name": "Основы языка Java",
+      "description": "На данном уроке ознакомимся с основами языка Java.",
+      "preview": "",
+      "link": null,
+      "course": 2
+    }
+  },
+  {
+    "model": "materials.subject",
+    "pk": 2,
+    "fields": {
+      "name": "Основы языка Python",
+      "description": "На данном уроке ознакомимся с основами языка Python.",
+      "preview": "",
+      "link": null,
+      "course": 1
+    }
+  },
+  {
+    "model": "materials.subject",
+    "pk": 3,
+    "fields": {
+      "name": "Основы Frontend",
+      "description": "На данном уроке ознакомимся с основами Frontend разработки.",
+      "preview": "",
+      "link": null,
+      "course": 3
+    }
+  }
+]

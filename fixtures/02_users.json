@@ -1,0 +1,22 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$720000$UVTGbjgQgF0x8TYzUeBHsR$ag3M7D4fYx/b6hwCT7aRXHs1z7CQjflhjtxOypKW1Mk=",
+      "last_login": "2024-06-06T00:17:24.298Z",
+      "is_superuser": true,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-06-06T00:15:08.186Z",
+      "email": "admin@mih.ru",
+      "phone": null,
+      "city": null,
+      "avatar": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]
