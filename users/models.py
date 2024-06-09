@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+
 from materials.models import Course, Subject
 
 NULLABLE = {"blank": True, "null": True}
@@ -31,18 +32,25 @@ class User(AbstractUser):
 class Payment(models.Model):
     cash = "Наличные"
     transfer = "Перевод на счёт"
-    payment_methods = [
-        (cash, "Наличные"), (transfer, "Перевод на счёт")]
+    payment_methods = [(cash, "Наличные"), (transfer, "Перевод на счёт")]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Пользователь")
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name="Пользователь"
+    )
     payment_date = models.DateField(verbose_name="Дата оплаты")
-    course_paid = models.ForeignKey(Course, on_delete=models.CASCADE, **NULLABLE, verbose_name="Оплаченный курс")
-    subject_paid = models.ForeignKey(Subject, on_delete=models.CASCADE, **NULLABLE, verbose_name="Оплаченный урок")
+    course_paid = models.ForeignKey(
+        Course, on_delete=models.CASCADE, **NULLABLE, verbose_name="Оплаченный курс"
+    )
+    subject_paid = models.ForeignKey(
+        Subject, on_delete=models.CASCADE, **NULLABLE, verbose_name="Оплаченный урок"
+    )
     payment_amount = models.PositiveIntegerField(verbose_name="Сумма оплаты")
-    payment_method = models.CharField(max_length=50, default=transfer, choices=payment_methods)
+    payment_method = models.CharField(
+        max_length=50, default=transfer, choices=payment_methods
+    )
 
     def __str__(self):
-        return f'У {self.user} дата оплаты {self.payment_date}'
+        return f"У {self.user} дата оплаты {self.payment_date}"
 
     class Meta:
         verbose_name = "Платеж"
