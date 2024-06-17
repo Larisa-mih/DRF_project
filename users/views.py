@@ -2,14 +2,11 @@ from django_filters import rest_framework as filters
 from rest_framework import generics
 from rest_framework.filters import OrderingFilter
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from users.permissions import IsAuth
+
 from users.models import Payment, User
-from users.serializers import (
-    CreateUserSerializer,
-    PaymentSerializer,
-    UserSerializer,
-    UserSerializerPerm,
-)
+from users.permissions import IsAuth
+from users.serializers import (CreateUserSerializer, PaymentSerializer,
+                               UserSerializer, UserSerializerPerm)
 
 
 class UserCreateAPIView(generics.CreateAPIView):
