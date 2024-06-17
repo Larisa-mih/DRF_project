@@ -2,14 +2,10 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 
 from materials.apps import MaterialsConfig
-from materials.views import (
-    CourseViewSet,
-    SubjectCreateAPIView,
-    SubjectDestroyAPIView,
-    SubjectListAPIView,
-    SubjectRetrieveAPIView,
-    SubjectUpdateAPIView,
-)
+from materials.views import (CourseViewSet, SubjectCreateAPIView,
+                             SubjectDestroyAPIView, SubjectListAPIView,
+                             SubjectRetrieveAPIView, SubjectUpdateAPIView,
+                             SubscriptionCreateView)
 
 app_name = MaterialsConfig.name
 
@@ -29,5 +25,10 @@ urlpatterns = [
         "subject/delete/<int:pk>",
         SubjectDestroyAPIView.as_view(),
         name="subjects_delete",
+    ),
+    path(
+        "subscription/create",
+        SubscriptionCreateView.as_view(),
+        name="subscription_create",
     ),
 ] + router.urls
