@@ -5,6 +5,7 @@ from materials.validators import LinkValidator
 
 
 class SubjectSerializer(serializers.ModelSerializer):
+    """Класс сериализатор урока"""
     validators = [LinkValidator(field="link")]
 
     class Meta:
@@ -13,12 +14,18 @@ class SubjectSerializer(serializers.ModelSerializer):
 
 
 class CourseSerializer(serializers.ModelSerializer):
+    """Класс сериализатор курса"""
     subject_count = serializers.SerializerMethodField()
     subject = SubjectSerializer(source="subject_set", many=True, read_only=True)
     subscription = serializers.SerializerMethodField()
 
-    def get_subject_count(self, obj):
-        return obj.subject_set.count()
+    class Meta:
+        model = Course
+        fields = '__all__'
+
+    @staticmethod
+    def get_subject_count(course):
+        return Subject.objects.filter(course=course).count()
 
     def get_subscription(self, obj):
         request = self.context.get("request")
@@ -27,21 +34,9 @@ class CourseSerializer(serializers.ModelSerializer):
             user = request.user
         return obj.subscription_set.filter(user=user).exists()
 
-    class Meta:
-        model = Course
-
-    fields = (
-        "name",
-        "description",
-        "preview",
-        "owner",
-        "subscription",
-        "subject",
-        "subject_count",
-    )
-
 
 class SubscriptionSerializer(serializers.ModelSerializer):
+    """""Класс сериализатор подписки"""""
     class Meta:
         model = Subscription
         fields = "__all__"

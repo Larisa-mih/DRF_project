@@ -51,9 +51,7 @@ class Subject(models.Model):
 
 
 class Subscription(models.Model):
-    user = models.ForeignKey(
-        to="users.User", on_delete=models.CASCADE, verbose_name="Пользователь"
-    )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Пользователь")
     course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name="Курс")
 
     def __str__(self):

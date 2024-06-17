@@ -5,8 +5,12 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from users.models import Payment, User
 from users.permissions import IsAuth
-from users.serializers import (CreateUserSerializer, PaymentSerializer,
-                               UserSerializer, UserSerializerPerm)
+from users.serializers import (
+    CreateUserSerializer,
+    PaymentSerializer,
+    UserSerializer,
+    UserSerializerPerm,
+)
 
 
 class UserCreateAPIView(generics.CreateAPIView):

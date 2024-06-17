@@ -6,6 +6,7 @@ from materials.models import Course, Subject
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
     list_display = (
+        "id",
         "name",
         "description",
     )
@@ -15,6 +16,7 @@ class CourseAdmin(admin.ModelAdmin):
 @admin.register(Subject)
 class SubjectAdmin(admin.ModelAdmin):
     list_display = (
+        "id",
         "name",
         "description",
         "course",

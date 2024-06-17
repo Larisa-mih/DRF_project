@@ -5,8 +5,11 @@ from rest_framework.response import Response
 
 from materials.models import Course, Subject, Subscription
 from materials.pagination import CoursePaginator, SubjectPaginator
-from materials.serializers import (CourseSerializer, SubjectSerializer,
-                                   SubscriptionSerializer)
+from materials.serializers import (
+    CourseSerializer,
+    SubjectSerializer,
+    SubscriptionSerializer,
+)
 from users.permissions import IsModerator, IsNotModerator
 
 
@@ -16,13 +19,23 @@ class CourseViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsModerator, IsNotModerator]
     pagination_class = CoursePaginator
 
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
 
 class SubjectCreateAPIView(generics.CreateAPIView):
+    """Create a subject"""
+
     serializer_class = SubjectSerializer
     permission_classes = [IsAuthenticated, IsModerator]
 
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
 
 class SubjectListAPIView(generics.ListAPIView):
+    """Subjects list"""
+
     serializer_class = SubjectSerializer
     queryset = Subject.objects.all()
     permission_classes = [IsAuthenticated]
@@ -30,18 +43,24 @@ class SubjectListAPIView(generics.ListAPIView):
 
 
 class SubjectRetrieveAPIView(generics.RetrieveAPIView):
+    """Detail view for the subject"""
+
     serializer_class = SubjectSerializer
     queryset = Subject.objects.all()
     permission_classes = [IsAuthenticated, IsNotModerator]
 
 
 class SubjectUpdateAPIView(generics.UpdateAPIView):
+    """Update the subject"""
+
     serializer_class = SubjectSerializer
     queryset = Subject.objects.all()
     permission_classes = [IsAuthenticated, IsNotModerator]
 
 
 class SubjectDestroyAPIView(generics.DestroyAPIView):
+    """Delete the subject"""
+
     queryset = Subject.objects.all()
     permission_classes = [IsAuthenticated, IsModerator, IsNotModerator]
 
