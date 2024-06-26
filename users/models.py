@@ -7,6 +7,7 @@ NULLABLE = {"blank": True, "null": True}
 
 
 class User(AbstractUser):
+    """Модель пользователя"""
     username = None
 
     email = models.EmailField(unique=True, verbose_name="Почта", help_text="Укажите почту")
@@ -23,6 +24,7 @@ class User(AbstractUser):
 
 
 class Payment(models.Model):
+    """Модель платежей"""
     cash = "Наличные"
     transfer = "Перевод на счёт"
     payment_methods = [(cash, "Наличные"), (transfer, "Перевод на счёт")]
