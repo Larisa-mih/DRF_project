@@ -10,6 +10,7 @@ from materials.serializers import (
     SubjectSerializer,
     SubscriptionSerializer,
 )
+from materials.tasks import send_email
 from users.permissions import IsModerator, IsNotModerator
 
 
@@ -21,6 +22,10 @@ class CourseViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+    def perform_update(self, serializer):
+        course = serializer.save()
+        send_email.delay(course.pk)
 
 
 class SubjectCreateAPIView(generics.CreateAPIView):

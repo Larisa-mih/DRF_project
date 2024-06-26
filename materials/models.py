@@ -3,6 +3,7 @@ from django.db import models
 
 
 class Course(models.Model):
+    """ Модель курса"""
     name = models.CharField(max_length=100, verbose_name="Название")
     description = models.TextField(verbose_name="Описание")
     preview = models.ImageField(
@@ -25,6 +26,7 @@ class Course(models.Model):
 
 
 class Subject(models.Model):
+    """Модель урока"""
     name = models.CharField(max_length=100, verbose_name="Название")
     description = models.TextField(verbose_name="Описание")
     preview = models.ImageField(
@@ -51,8 +53,11 @@ class Subject(models.Model):
 
 
 class Subscription(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Пользователь")
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name="Курс")
+    """Модель подписки"""
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                             related_name="subscription", verbose_name="Пользователь")
+    course = models.ForeignKey(Course, on_delete=models.CASCADE,
+                               related_name="subscription", verbose_name="Курс")
 
     def __str__(self):
         return f"Пользователь {self.user} подписан на курс {self.course}"

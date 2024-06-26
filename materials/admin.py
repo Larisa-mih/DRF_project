@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from materials.models import Course, Subject
+from materials.models import Course, Subject, Subscription
 
 
 @admin.register(Course)
@@ -22,3 +22,10 @@ class SubjectAdmin(admin.ModelAdmin):
         "course",
     )
     search_fields = ("name", "course")
+
+
+@admin.register(Subscription)
+class SubscriptionAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'course',)
+    list_filter = ('course',)
+    search_fields = ('user',)
