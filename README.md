@@ -1,4 +1,5 @@
 <h3 align="center">DRF_project</h3>
+
 <details>
   <summary>Оглавление</summary>
   <ol>
@@ -9,7 +10,11 @@
     <li>Контакты</li>
   </ol>
 </details>
+
+
 ## О проекте
+
+
 ## Технологии
 - Django
 - PostgreSQL
@@ -20,12 +25,16 @@
 
 
 ## Настройка проекта
+
 Для работы с проектом произведите базовые настройки.
+
 ### 1. Клонирование проекта
+
 Клонируйте репозиторий используя следующую команду.
   ```sh
   git clone https://github.com/Larisa-mih/DRF_project
   ```
+
 ### 2. Настройка виртуального окружения и установка зависимостей
 - Инструкция для работы через виртуальное окружение - pip: 
 ```text
@@ -48,6 +57,7 @@ venv\Scripts\activate.bat         # для Windows
 pip install -r requirements.txt
 ```
 ### 3. Редактирование .env.sample:
+
 - В корне проекта создайте файл .env.sample и .env и отредактируйте параметры:
     ```text
     # Postgresql
@@ -72,6 +82,7 @@ pip install -r requirements.txt
     REDIS=
     ```
 ### 4. Настройка БД:
+
 - Примените миграции:
   ```text
   python manage.py migrate
@@ -84,7 +95,7 @@ pip install -r requirements.txt
 
 ## Использование
 
-- Для запуска проекта наберите в терминале команду:
+
 #### Для запуска локально проекта наберите в терминале команду:
   ```text
   python manage.py runserver
